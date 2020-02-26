@@ -6,6 +6,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require bootstrap
+//= require chosen
 //= require bootstrap-datepicker
 //= require TasksController
 //= require_tree.
