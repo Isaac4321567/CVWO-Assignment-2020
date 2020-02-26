@@ -1,22 +1,9 @@
-<%= form_with scope: :task, url: "/tasks", :html => {:class => "form-horizontal center"} do |f| %>
-      <div class="form-group">
-        <%= f.label :title, "Title:", class: "col-md-4 control-label" %>
-        <div class="col-md-8">
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :description, "Description:", class: "col-md-4 control-label" %>
-        <div class="col-md-8">
-          <%= f.text_area :description, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group">
-	<%= f.text_field :due_date, 'data-behaviour' => 'datepicker' %>
-        <script type="text/javascript">
-	  $('[data-behaviour~=datepicker]').datepicker();
-	</script>
-	<input type="text" data-provide='datepicker' class='.datepicker'>
-      </div>
-      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
- <% end %>
+<div class="form-group">
+<%= simple_form_for @task, url: tasks_path do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :tag_ids, as: :select, collection: Tag.order(:name), label_method: :name, input_html: {multiple: true} %>
+    <%= f.submit "Next", class: 'btn btn-lg btn-primary float-right' %>
+<% end %>
+</div>
+

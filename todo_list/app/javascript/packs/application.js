@@ -1,6 +1,9 @@
 
 //= require jquery
 //= require popper
+//= require jquery_ujs
+//= require tether
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-datepicker
