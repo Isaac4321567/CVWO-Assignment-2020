@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  
-  resources :tasks
+  post '/tasks', to: 'tasks#index'  
+  resources :tasks, :only => [:index, :new]
 
   root 'tasks#index'
-
 end
