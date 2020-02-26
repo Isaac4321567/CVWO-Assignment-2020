@@ -59,3 +59,5 @@ gem 'bootstrap-sass'
 
 gem 'bootstrap'
 gem 'popper_js', '~> 1.14.5'
+
+gem 'bootstrap-datepicker-rails'

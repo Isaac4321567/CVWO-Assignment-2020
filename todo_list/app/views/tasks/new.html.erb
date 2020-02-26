@@ -11,7 +11,11 @@
           <%= f.text_area :description, class: "form-control" %>
         </div>
       </div>
-      
-      
+      <div class="form-group">
+	<%= f.text_field :due_date, 'data-behaviour' => 'datepicker' %>
+        <script type="text/javascript">
+	  $('[data-behaviour~=datepicker]').datepicker();
+	</script>
+      </div>
       <%= f.submit "Submit", class: "btn btn-default btn-primary" %>  
  <% end %>
