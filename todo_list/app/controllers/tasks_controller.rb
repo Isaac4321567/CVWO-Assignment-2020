@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 	
 	def destroy
 		Task.destroy(params[:id])		
-		redirect_to task_path
+		redirect_to tasks_path
 	end
 
 	def new
