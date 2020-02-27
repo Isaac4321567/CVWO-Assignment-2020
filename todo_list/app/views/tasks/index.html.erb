@@ -1,7 +1,7 @@
    <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       
 	    <div class="logo"><a href="https://github.com/Isaac4321567/CVWO-Assignment-2020" class="simple-text logo-normal">
-	      Created by Isaac
+	      Todo list app
 	    </a></div>
 	    <div class="sidebar-wrapper">
 		    <ul class="nav">
@@ -43,7 +43,7 @@
 						<td style="width:5%">
 						    <div class="form-check">
 							<label class="form-check-label">
-							    <input class="form-check-input" type="checkbox" value="" checked>
+							    <input class="form-check-input" type="checkbox" value="<%= task.done %>" checked>
 							    <span class="form-check-sign">
 							        <span class="check"></span>
 							    </span>
@@ -52,9 +52,10 @@
 						</td>
 						<td style="width:87%; font-size:180%"><%= task.title %></td>
 						<td class="td-actions text-right">
-						     
-						     <%= link_to 'Edit', edit_task_path(task) %>
-						     <%= button_to 'Close', {:controller => "tasks", :action => "destroy", :id => task.id} , {:method=>:delete}  %>
+						    <%= link_to 'Edit', edit_task_path(task)%>
+							
+
+						    <%= button_to 'Close', {:controller => "tasks", :action => "destroy", :id => task.id} , {:method=>:delete}  %>
 						</td>
 					    </tr>
 					    <% end %>	
