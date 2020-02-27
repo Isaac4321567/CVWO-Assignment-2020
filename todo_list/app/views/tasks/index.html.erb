@@ -52,8 +52,8 @@
 						</td>
 						<td style="width:87%; font-size:180%"><%= task.title %></td>
 						<td class="td-actions text-right">
-						     <%= button_to 'Edit', new_task_path, method: :get, remote: true, class: 'btn primary' %>
-						      
+						     
+						     <%= link_to 'Edit', edit_task_path(task) %>
 						     <%= button_to 'Close', {:controller => "tasks", :action => "destroy", :id => task.id} , {:method=>:delete}  %>
 						</td>
 					    </tr>
