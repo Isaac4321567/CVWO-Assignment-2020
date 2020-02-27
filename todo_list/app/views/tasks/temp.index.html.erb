@@ -1,0 +1,78 @@
+
+
+
+   <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      
+	    <div class="logo"><a href="https://github.com/Isaac4321567/CVWO-Assignment-2020" class="simple-text logo-normal">
+	      Todo list app
+	    </a></div>
+	    <div class="sidebar-wrapper">
+		    <ul class="nav">
+		      <li class="nav-item active  ">
+		        <a class="nav-link" href="<%= new_task_path %>">
+
+                           <i class="material-icons">dashboard</i>
+
+                           <p>Add new Task</p>
+
+                         </a>
+		      </li>
+		    </ul>
+	    </div>
+    </div>
+<div class="main-panel">    
+    <div class="content">
+        <div class="container-fluid">
+	    <div class="row">
+		<div class= "col-lg-6-col-md-12" style="width:100%">
+		    <div class="card">
+			<div class="card-header card-header-tabs card-header-primary">
+			    <div class="nav-tabs-navigation">
+			        <div class="nav-tabs-wrapper">
+				    <span class="nav-tabs-title" style="font-size:200%">Tasks:</span>
+				    <ul class="nav nav-tabs" data-tabs="tabs">
+								
+				    </ul>
+				</div>
+			    </div>
+			</div>
+			<div class="card-body">
+			    <div class="tab-content">
+				<div class="tab-pane active" id="profile">
+				    <table class="table">
+				        <tbody>
+					    <% @tasks.each do |task| %>
+					    <tr>
+						<td style="width:5%">
+						    <div class="form-check">
+							<label class="form-check-label">
+							    <input class="form-check-input" type="checkbox" value="<%= task.done %>" checked>
+							    <span class="form-check-sign">
+							        <span class="check"></span>
+							    </span>
+							</label>
+						    </div>
+						</td>
+						<td style="width:87%; font-size:180%"><%= task.title %></td>
+						<td class="td-actions text-right">
+						    <%= link_to 'Edit', edit_task_path(task)%>
+							
+
+						    <%= button_to 'Close', {:controller => "tasks", :action => "destroy", :id => task.id} , {:method=>:delete}  %>
+						</td>
+					    </tr>
+					    <% end %>	
+									
+							
+					</tbody>
+				    </table>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>
+
