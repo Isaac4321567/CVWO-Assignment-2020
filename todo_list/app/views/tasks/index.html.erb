@@ -1,7 +1,7 @@
    <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       
-	    <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-	      Creative Tim
+	    <div class="logo"><a href="https://github.com/Isaac4321567/CVWO-Assignment-2020" class="simple-text logo-normal">
+	      Created by Isaac
 	    </a></div>
 	    <div class="sidebar-wrapper">
 		    <ul class="nav">
@@ -26,7 +26,7 @@
 			<div class="card-header card-header-tabs card-header-primary">
 			    <div class="nav-tabs-navigation">
 			        <div class="nav-tabs-wrapper">
-				    <span class="nav-tabs-title">Tasks:</span>
+				    <span class="nav-tabs-title" style="font-size:200%">Tasks:</span>
 				    <ul class="nav nav-tabs" data-tabs="tabs">
 								
 				    </ul>
@@ -50,14 +50,11 @@
 							</label>
 						    </div>
 						</td>
-						<td style="width:87%"><%= task.title %></td>
+						<td style="width:87%; font-size:180%"><%= task.title %></td>
 						<td class="td-actions text-right">
-						    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-						        <i class="material-icons">edit</i>
-						    </button>
-						    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-						        <i class="material-icons">close</i>
-						    </button>
+						     <%= button_to 'Edit', new_task_path, method: :get, remote: true, class: 'btn primary' %>
+						      
+						     <%= button_to 'Close', {:controller => "tasks", :action => "destroy", :id => task.id} , {:method=>:delete}  %>
 						</td>
 					    </tr>
 					    <% end %>	

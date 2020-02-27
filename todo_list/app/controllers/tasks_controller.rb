@@ -2,6 +2,11 @@ class TasksController < ApplicationController
 	def index
 		@tasks = Task.all
 	end
+	
+	def destroy
+		Task.destroy(params[:id])		
+		redirect_to task_path
+	end
 
 	def new
 		
