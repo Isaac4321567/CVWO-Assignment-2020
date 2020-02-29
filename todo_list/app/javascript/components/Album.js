@@ -29,6 +29,8 @@ import Link from '@material-ui/core/Link';
 
 import Chip from '@material-ui/core/Chip';
 
+import PropTypes from "prop-types"
+
 function Copyright() {
 
   return (
@@ -52,8 +54,6 @@ function Copyright() {
   );
 
 }
-
-
 
 const useStyles = makeStyles(theme => ({
 
@@ -118,22 +118,21 @@ const useStyles = makeStyles(theme => ({
 
   chipcontainer: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'left',
     flexWrap: 'wrap',
     '& > *': {
       margin: theme.spacing(0.5),
     },
   },
 
+  shortchip: {
+    fontSize: '140%',
+  },
+
 }));
 
 
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-
-
-export default function Album() {
+function Album(props) {
 
   const classes = useStyles();
 
@@ -185,13 +184,13 @@ export default function Album() {
               <Grid container spacing={2} justify="center">
 
                 <Grid item>
-
+		  <Link href="/tasks/new">
                   <Button variant="contained" color="primary">
 
                     Add a Todo
 
                   </Button>
-
+		  </Link>
                 </Grid>
 
                 <Grid item>
@@ -218,9 +217,9 @@ export default function Album() {
 
           <Grid container spacing={4}>
 
-            {cards.map(card => (
+            {props.tasks.map(task => (
 
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid item key={task.id} xs={12} sm={6} md={4}>
 
                 <Card className={classes.card}>
 
@@ -235,13 +234,13 @@ export default function Album() {
 
                     <Typography gutterBottom variant="h5" component="h2">
 
-                      Heading
+                      {task.title}
 
                     </Typography>
 
                     <Typography>
 
-                      This is a media card. You can use this section to describe the content.
+                      {task.description}
 
                     </Typography>
 
@@ -264,10 +263,10 @@ export default function Album() {
                   </CardActions>
 
 		  <div className={classes.chipcontainer}>
-		  <Chip
+		  <Chip className={classes.shortchip}
 		    label="Important"
-		    color="primary"
-		    variant="outlined"
+
+		    onDelete={handleDelete}
 		  />
 		  </div>
 
@@ -309,4 +308,11 @@ export default function Album() {
 
   );
 
+
 }
+
+Album.propTypes= {
+  tasks: PropTypes.array
+};
+
+export default Album
