@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 
 import Button from '@material-ui/core/Button';
 
+import Modal from '@material-ui/core/Modal';
 
 import Card from '@material-ui/core/Card';
 
