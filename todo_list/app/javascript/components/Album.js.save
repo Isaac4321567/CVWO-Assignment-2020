@@ -235,13 +235,13 @@ function Album(props) {
 
         <Toolbar>
 
-	  <Link href="https://github.com/Isaac4321567/CVWO-Assignment-2020" color="inherit">
+
           <Typography variant="h6" color="inherit" noWrap>
 
             CVWO 2020
 
           </Typography>
-	  </Link>
+
         </Toolbar>
 
       </AppBar>
@@ -292,20 +292,17 @@ function Album(props) {
       		  >
         	    <Fade in={open}>
           		<div className={classes.paper}>
-            		    <form className={classes.root} noValidate autoComplete='off' action="/tasks" method="post">
+            		    <form className={classes.root} noValidate autoComplete='off'>
 				<FormControl>
 				    <InputLabel htmlFor="component-simple">Title</InputLabel>
-				    <Input id="component-simple" name="task[title]" value={title} onChange={handleChangeTitle} label="Title" fullWidth/>
+				    <Input id="component-simple" value={title} onChange={handleChangeTitle} label="Title" fullWidth/>
 				</FormControl>
-				<br />
+
 				<FormControl>
-				    <InputLabel htmlFor="component-simple-area">Description</InputLabel>
-				    <Input id="component-simple-area" name="task[description]" value={description} onChange={handleChangeDesc} fullWidth multiline rows="3" rowsMax="4"/>
+				    <InputLabel htmlFor="component-simple-area">Description</InputLa
+				    <Input id="component-simple-area" value={description} onChange={handleChangeDesc} fullWidth multiline rowsMax="4"/>
           			</FormControl>
-				<br />
-			    	<input type='hidden' name='authenticity_token' value={props.authenticity_token} />
-			        <input type="submit" value="Submit" />
-			   </form>
+			    </form>
 
 			</div>
 		    </Fade>
@@ -432,8 +429,7 @@ function Album(props) {
 }
 
 Album.propTypes= {
-  tasks: PropTypes.array,
-  authenticity_token: PropTypes.string
+  tasks: PropTypes.array
 };
 
 export default Album
