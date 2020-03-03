@@ -195,9 +195,8 @@ Fade.propTypes = {
 
 function Album(props) {
 
-  const classes = useStyles();
 
-  const handleDelete = () => {};
+  const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
 
@@ -224,6 +223,21 @@ function Album(props) {
   const handleChange = event => {
     setName(event.target.value);
   };
+
+  const handleDeleteTask = (task_id) => {
+    console.log(task_id);
+    $.ajax({
+      url: '/tasks/' + task_id + "/?&authenticity_token=" + encodeURIComponent(props.authenticity_token),
+      type: "DELETE",
+      dataType: "json",
+      success: () => { window.location.reload(false); },
+      error: () => {window.location.reload(false);}
+    });
+
+   // window.location.reload(false);
+ }
+
+  const handleDelete = () => {};
 
   return (
 
@@ -370,13 +384,13 @@ function Album(props) {
 
                     <Button size="small" color="primary">
 
-                      View
+                      Edit
 
                     </Button>
 
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={() => {handleDeleteTask(task.id)}}>
 
-                      Edit
+                      Delete
 
                     </Button>
 

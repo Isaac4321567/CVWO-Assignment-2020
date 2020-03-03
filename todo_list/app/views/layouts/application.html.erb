@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>TodoList</title>
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
