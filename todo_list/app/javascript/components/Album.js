@@ -200,6 +200,10 @@ function Album(props) {
 
   const [open, setOpen] = React.useState(false);
 
+  const [route, setRoute] = React.useState('/tasks');
+
+  const [method, setMethod] = React.useState('post');
+
   const [title, setTitle] = React.useState('');
 
   const [description, setDesc] = React.useState('');
@@ -212,9 +216,24 @@ function Album(props) {
     setDesc(event.target.value);
   };
 
-  const handleOpen = () => {
+  const handleDefaultOpen = () => {
+    setTitle('');
+    setDesc('');
+    setMethod('post');
+    setRoute('/tasks');
+
     setOpen(true);
-  };
+  }
+
+  const handleEditOpen = (id, title, desc) => {
+    setTitle(title);
+    setDesc(desc);
+    setMethod('patch');
+    setRoute('/tasks/' + id);
+
+    setOpen(true);
+  }
+
 
   const handleClose = () => {
     setOpen(false);
@@ -286,7 +305,7 @@ function Album(props) {
 
                 <Grid item>
 
-                  <Button variant="contained" color="primary" onClick={handleOpen}>
+                  <Button variant="contained" color="primary" onClick={handleDefaultOpen}>
 
                     Add a Todo
 
@@ -306,7 +325,7 @@ function Album(props) {
       		  >
         	    <Fade in={open}>
           		<div className={classes.paper}>
-            		    <form className={classes.root} noValidate autoComplete='off' action="/tasks" method="post">
+            		    <form className={classes.root} noValidate autoComplete='off' action={route} method='post'>
 				<FormControl>
 				    <InputLabel htmlFor="component-simple">Title</InputLabel>
 				    <Input id="component-simple" name="task[title]" value={title} onChange={handleChangeTitle} label="Title" fullWidth/>
@@ -318,6 +337,9 @@ function Album(props) {
           			</FormControl>
 				<br />
 			    	<input type='hidden' name='authenticity_token' value={props.authenticity_token} />
+				{method == "patch" &&
+				    <input type='hidden' name='_method' value='patch' />
+				}
 			        <input type="submit" value="Submit" />
 			   </form>
 
@@ -382,7 +404,7 @@ function Album(props) {
 
                   <CardActions>
 
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick = {() => {handleEditOpen(task.id, task.title, task.description)}}>
 
                       Edit
 
