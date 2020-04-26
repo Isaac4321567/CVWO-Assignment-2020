@@ -44,30 +44,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-function Copyright() {
-
-  return (
-
-    <Typography variant="body2" color="textSecondary" align="center">
-
-      {'Copyright © '}
-
-      <Link color="inherit" href="https://material-ui.com/">
-
-        Your Website
-
-      </Link>{' '}
-
-      {new Date().getFullYear()}
-
-      {'.'}
-
-    </Typography>
-
-  );
-
-}
-
 const useStyles = makeStyles(theme => ({
   modal: {
     display: 'flex',
@@ -454,7 +430,6 @@ function Album(props) {
 
         </Typography>
 
-        <Copyright />
 
       </footer>
 
