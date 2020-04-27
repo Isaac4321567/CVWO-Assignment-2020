@@ -187,6 +187,7 @@ function Album(props) {
   const [description, setDesc] = React.useState('');
 
   const [tags, setTags] = React.useState(['']);
+  const [tag, setTag] = React.useState(['']);
 
   const handleChangeTags = (event) => {
     setTags(event);
@@ -194,8 +195,13 @@ function Album(props) {
     console.log(event[0]);
   }
 
+  const handleChangeTag = (event) => {
+    setTag(event);
+  }
+
   const handleChangeTitle = event => {
     setTitle(event.target.value);
+
   };
 
   const handleChangeDesc = event => {
@@ -350,12 +356,21 @@ function Album(props) {
 
                 <Grid item>
 
-                  <Button variant="outlined" color="primary">
+		  <form className={classes.root} noValidate autoComplete='off' action="/" method='get'>
 
-                    Secondary action
+			<FormControl>
+			    <Select
+				value={tag}
+			        name="tag"
+		       	        options={props.tags.map(tag=>({label: tag.name, value: tag.id}))}
+				onChange={handleChangeTag}
+				className="basic-single"
+				autosize
+				/>
+			</FormControl>
+		        <input type="submit" value="Submit" />
 
-                  </Button>
-
+    	          </form>
                 </Grid>
 
               </Grid>
@@ -372,9 +387,9 @@ function Album(props) {
 
           <Grid container spacing={4}>
 
-            {props.tasks.map(task => (
+            {props.tasktags.map(task => (
 
-              <Grid item key={task.id} xs={12} sm={6} md={4}>
+              <Grid item key={task[0].id} xs={12} sm={6} md={4}>
 
                 <Card className={classes.card}>
 
@@ -389,13 +404,13 @@ function Album(props) {
 
                     <Typography gutterBottom variant="h5" component="h2">
 
-                      {task.title}
+                      {task[0].title}
 
                     </Typography>
 
                     <Typography>
 
-                      {task.description}
+                      {task[0].description}
 
                     </Typography>
 
@@ -403,13 +418,13 @@ function Album(props) {
 
                   <CardActions>
 
-                    <Button size="small" color="primary" onClick = {() => {handleEditOpen(task.id, task.title, task.description)}}>
+                    <Button size="small" color="primary" onClick = {() => {handleEditOpen(task[0].id, task[0].title, task[0].description)}}>
 
                       Edit
 
                     </Button>
 
-                    <Button size="small" color="primary" onClick={() => {handleDeleteTask(task.id)}}>
+                    <Button size="small" color="primary" onClick={() => {handleDeleteTask(task[0].id)}}>
 
                       Delete
 
@@ -418,11 +433,15 @@ function Album(props) {
                   </CardActions>
 
 		  <div className={classes.chipcontainer}>
-		  <Chip className={classes.shortchip}
-		    label="Important"
-
-		    onDelete={handleDelete}
+		  <Select
+		     className="basic-multi-select"
+		     isMulti
+		     isDisabled
+		     autosize={true}
+		     value={task[1].map(tag=>({label: tag.name, value: tag.id}))}
 		  />
+		  {console.log(task[0])}
+		  {console.log()}
 		  </div>
 
                 </Card>

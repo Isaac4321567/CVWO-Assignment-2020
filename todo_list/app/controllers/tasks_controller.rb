@@ -1,6 +1,18 @@
 class TasksController < ApplicationController
 	def index
-		params[:tag] ? @tasks = Task.tagged_with(params[:tag]) : @tasks = Task.all
+		
+		params[:tag] ? (params[:tag].empty? ? @tasks = Task.all : @tasks = Task.tagged_with(params[:tag])) : @tasks = Task.all
+		
+		@tasktags = Array.new(@tasks.length())
+
+		for i in 0..(@tasks.length()-1)
+		    tasktag = Array.new(2)
+		    tasktag[0] = @tasks[i]
+		    tasktag[1] = @tasks[i].tags
+		    @tasktags[i] = tasktag
+
+		end		
+		
 		@tags = Tag.all
 	end
 	
