@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Select from 'react-select';
+
 import AppBar from '@material-ui/core/AppBar';
 
 import Button from '@material-ui/core/Button';
@@ -19,7 +21,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 
 import Toolbar from '@material-ui/core/Toolbar';
-
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -172,6 +173,7 @@ Fade.propTypes = {
 function Album(props) {
 
 
+
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -183,6 +185,14 @@ function Album(props) {
   const [title, setTitle] = React.useState('');
 
   const [description, setDesc] = React.useState('');
+
+  const [tags, setTags] = React.useState(['']);
+
+  const handleChangeTags = (event) => {
+    setTags(event);
+    console.log(event);
+    console.log(event[0]);
+  }
 
   const handleChangeTitle = event => {
     setTitle(event.target.value);
@@ -312,7 +322,20 @@ function Album(props) {
 				    <Input id="component-simple-area" name="task[description]" value={description} onChange={handleChangeDesc} fullWidth multiline rows="3" rowsMax="4"/>
           			</FormControl>
 				<br />
-			    	<input type='hidden' name='authenticity_token' value={props.authenticity_token} />
+
+				<FormControl>
+				<Select
+				    value={tags}
+				    name="task[tag_ids][]"
+				    options={props.tags.map(tag=>({label: tag.name, value: tag.id}))}
+				    onChange={handleChangeTags}
+				    isMulti
+				    className="basic-multi-select"
+				    fullWidth
+				/>
+				</FormControl>
+			    	<br />
+				<input type='hidden' name='authenticity_token' value={props.authenticity_token} />
 				{method == "patch" &&
 				    <input type='hidden' name='_method' value='patch' />
 				}
@@ -358,7 +381,7 @@ function Album(props) {
                   <CardMedia
 
                     className={classes.cardMedia}
-
+		    src="javascript:void(0)"
 
                   />
 

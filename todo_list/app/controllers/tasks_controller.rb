@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 	def index
-		@tasks = Task.all
+		params[:tag] ? @tasks = Task.tagged_with(params[:tag]) : @tasks = Task.all
+		@tags = Tag.all
 	end
 	
 	def destroy
